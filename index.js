@@ -8,29 +8,32 @@ const example = [
 ];
 
 const whereIsWaldo = (matrix) => {
-  for (const [index, element] of matrix.entries()) {
-    debugger;
-    for (const [i, v] of element.entries()) {
-      debugger;
-      if (element[i + 1] == undefined || element[i - 1] == undefined) {
+  for (const [row, element] of matrix.entries()) {
+    // debugger;
+    for (const [column, v] of element.entries()) {
+      // debugger;
+      if (
+        element[column + 1] == undefined ||
+        element[column - 1] == undefined
+      ) {
         if (
-          element[i] !== element[i + 1] &&
-          element[i] !== element[i + 2] &&
-          element[i - 1] == undefined
+          element[column] !== element[column + 1] &&
+          element[column] !== element[column + 2] &&
+          element[column - 1] == undefined
         ) {
-          return [index + 1, i + 1];
+          return [row + 1, column + 1];
         } else if (
-          element[i] !== element[i - 1] &&
-          element[i] !== element[i - 2] &&
-          element[i + 1] == undefined
+          element[column] !== element[column - 1] &&
+          element[column] !== element[column - 2] &&
+          element[column + 1] == undefined
         ) {
-          return [index + 1, i + 1];
+          return [row + 1, column + 1];
         }
       } else if (
-        element[i] !== element[i - 1] &&
-        element[i + 1] !== element[i]
+        element[column] !== element[column - 1] &&
+        element[column + 1] !== element[column]
       ) {
-        return [index + 1, i + 1];
+        return [row + 1, column + 1];
       }
     }
   }
